@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simple HTML Page</title>
+  <style>
+    :root{--accent:#2563eb;--bg:#f8fafc;--card:#ffffff}
+    body{font-family:Inter, system-ui, -apple-system, Arial, sans-serif; margin:0; background:var(--bg); color:#0f172a}
+    header{background:linear-gradient(90deg, rgba(37,99,235,0.08), transparent); padding:18px 24px}
+    .container{max-width:900px;margin:24px auto;padding:0 18px}
+    .brand{font-weight:700;color:var(--accent)}
+    .hero{background:var(--card);padding:20px;border-radius:12px;box-shadow:0 6px 18px rgba(15,23,42,0.06)}
+    .grid{display:grid;grid-template-columns:1fr 220px;gap:16px;align-items:start}
+    button{background:var(--accent);color:white;border:0;padding:10px 14px;border-radius:8px;cursor:pointer}
+    footer{opacity:0.8;padding:18px 24px;text-align:center;font-size:14px}
+    @media (max-width:700px){.grid{grid-template-columns:1fr} }
+    .note{font-size:14px;color:#334155}
+    input[type=text]{width:100%;padding:10px;border-radius:8px;border:1px solid #e2e8f0}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <div class="brand">SimplePage</div>
+        <div style="font-size:13px;color:#475569">A tiny starter HTML page</div>
+      </div>
+      <nav style="font-size:14px;color:#0f172a">
+        <a href="#" style="margin-right:12px; text-decoration:none; color:inherit">Home</a>
+        <a href="#" style="margin-right:12px; text-decoration:none; color:inherit">Docs</a>
+        <a href="#" style="text-decoration:none; color:inherit">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <img src="image (10).png">
+  </main>
+
+  <footer>
+    © SimplePage — made for quick demos
+  </footer>
+
+  <script>
+    const greetBtn = document.getElementById('greetBtn');
+    const nameInput = document.getElementById('nameInput');
+    const message = document.getElementById('message');
+    const toggleBtn = document.getElementById('toggleBtn');
+
+    greetBtn.addEventListener('click', () => {
+      const name = nameInput.value.trim() || 'friend';
+      message.textContent = `Hello, ${name}! 👋`;
+    });
+
+    toggleBtn.addEventListener('click', () => {
+      const isDark = document.documentElement.style.getPropertyValue('--bg') === '#0b1220';
+      if (!isDark) {
+        document.documentElement.style.setProperty('--bg', '#0b1220');
+        document.documentElement.style.setProperty('--card', '#071124');
+        document.documentElement.style.setProperty('--accent', '#7c3aed');
+        document.body.style.color = '#e6eef8';
+      } else {
+        document.documentElement.style.setProperty('--bg', '#f8fafc');
+        document.documentElement.style.setProperty('--card', '#ffffff');
+        document.documentElement.style.setProperty('--accent', '#2563eb');
+        document.body.style.color = '#0f172a';
+      }
+    });
+
+    // Enter key also triggers greeting
+    nameInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') greetBtn.click();
+    });
+  </script>
+</body>
+</html>
